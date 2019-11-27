@@ -1,0 +1,113 @@
+//ZigZag Tree Traversal
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+	int data;
+	struct Node *left;
+	struct Node *right;
+	
+	Node(int x){
+	    data = x;
+	    left = NULL;
+	    right = NULL;
+	}
+};
+
+
+void zigZagTraversal(Node* root);
+
+int main()
+{
+  int t;
+  cin>>t;
+  while (t--)
+  {
+     map<int, Node*> m;
+     int n;
+     cin>>n;
+     struct Node *root = NULL;
+     struct Node *child;
+     while (n--)
+     {
+        Node *parent;
+        char lr;
+        int n1, n2;
+        scanf("%d %d %c", &n1, &n2, &lr);
+        if (m.find(n1) == m.end())
+        {
+           parent = new Node(n1);
+           m[n1] = parent;
+           if (root == NULL)
+             root = parent;
+        }
+        else
+           parent = m[n1];
+        child = new Node(n2);
+        if (lr == 'L')
+          parent->left = child;
+        else
+          parent->right = child;
+        m[n2]  = child;
+     }
+     zigZagTraversal(root);
+  }
+  return 0;
+}
+// Contributed by: Hashit Sidhwa
+
+/*This is a function problem.You only need to complete the function given below*/
+//User function Template for C++
+/*Structure of the node of the binary tree is as
+struct Node {
+	int data;
+	struct Node *left, *right;
+};
+*/
+// your task is to complete this function 
+// Function takes a single argument as input
+// the root of the binary tree
+// print a new line after each test case
+void zigZagTraversal(Node* root)
+{
+	// Code here
+	queue<Node*>q;
+	q.push(root);
+	bool b=true;
+	while(!q.empty()){
+	int a =q.size();
+	
+	    if(b==true){
+	        for(int i=0;i<a;i++){
+	            cout<<q.front()->data<<" ";
+	            if(q.front()->left!=NULL)
+	            q.push(q.front()->left);
+	            if(q.front()->right!=NULL)
+	            q.push(q.front()->right);
+	            q.pop();
+	            
+	        }
+	        b=false;
+	        continue;
+	    }
+	    else{
+	        stack<int>S;
+	        for(int i=0;i<a;i++){
+	            S.push(q.front()->data);
+	            if(q.front()->left!=NULL)
+	            q.push(q.front()->left);
+	            if(q.front()->right!=NULL)
+	            q.push(q.front()->right);
+	            q.pop();
+	        }
+	        while(!S.empty()){
+	            cout<<S.top()<<" ";
+	            S.pop();
+	        }
+	        b=true;
+	        continue;
+	    }
+	}
+	cout<<"\n";
+}
