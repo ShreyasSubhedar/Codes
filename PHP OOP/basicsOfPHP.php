@@ -158,3 +158,18 @@ if( $retval == true ) {
 }else {
    echo "Message could not be sent...";
 }
+
+
+// Date and time in PHP
+$date_array = getdate();
+   
+foreach ( $date_array as $key => $val ){
+   print "$key = $val<br />";
+}
+
+$formatted_date  = "Today's date: ";
+$formatted_date .= $date_array['mday'] . "\n";
+$formatted_date .= $date_array['mon'] . "\n";
+$formatted_date .= $date_array['year'];
+
+print $formated_date;
