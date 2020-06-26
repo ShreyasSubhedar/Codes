@@ -3,9 +3,6 @@
 using namespace std;
 
 
- // } Driver Code Ends
-
-
 // Function to find subarray with maximum sum
 // arr: input array
 // n: size of array
