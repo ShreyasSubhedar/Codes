@@ -41,8 +41,7 @@ long long int floorSqrt(long long int x)
 
 // { Driver Code Starts.
 
-int main()
-{
+int main(){
 	int t;
 	cin>>t;
 	while(t--)
