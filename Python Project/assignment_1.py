@@ -48,20 +48,34 @@ def print_board():
         print(" "+text,end="  |")
       else:
           print("  "+j,end="  |")
-    print()
+    print("")
     print("-------------------------------------------")
   
 i=0
 while True :
   print_board()
   if i % 2== 0:
-    choice =int(input(print_red_white("Player 1 (🔴): Enter column number  (1 to 7):")))
+    choice=""
+    try:
+      choice =int(input(print_red_white("Player 1 (🔴): Enter column number  (1 to 7):")))
+    except ValueError :
+      print("Please enter an integer value")
+      continue
   else:
-    choice =int(input(print_blue_white("Player 2 (⚪): Enter column number  (1 to 7):")))
+    try:
+      choice =int(input(print_blue_white("Player 2 (⚪): Enter column number  (1 to 7):")))
+    except ValueError:
+      print("Please Enter integer value")
+      continue
 
-  if not (choice >=1 and choice<=7):
-    (print_red_white("Enter valid Column Number"))
+  try:
+    if not (choice >=1 and choice<=7):
+      raise ValueError("Please Enter value in b/w 1 & 7")
+  
+  except ValueError as e:
+    print(str(e))
     continue
+
   temp=-1
   for i1 in range(6):
     if board[i1][choice-1]=="-":
@@ -70,7 +84,7 @@ while True :
       break
   if temp==-1:
     print("Tie")
-    break
+    breaka
   if i %2==0:
     board[temp][choice-1]="X"
     i+=1
